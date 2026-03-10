@@ -2,8 +2,8 @@ name: Promoter Scanner
 
 on:
   schedule:
-    - cron: '0 4-10 * * 1-5'  # Every hour, Mon-Fri, 9:30am-3:30pm IST
-  workflow_dispatch:  # Allow manual trigger
+    - cron: '0 4-10 * * 1-5'
+  workflow_dispatch:
 
 jobs:
   scanner:
