@@ -345,12 +345,12 @@ with st.sidebar:
         if st.button("▶️ Start Auto Monitor", use_container_width=True):
             st.session_state.auto_monitor = True
             threading.Thread(target=auto_monitor_loop, daemon=True).start()
-            st.success("✅ Auto monitor ON!")
+            st.rerun()
     else:
         st.success("🟢 Auto monitor is ON")
         if st.button("⏹️ Stop Auto Monitor", use_container_width=True):
             st.session_state.auto_monitor = False
-            st.warning("Stopped")
+            st.rerun()
 
     st.divider()
 
@@ -360,13 +360,12 @@ with st.sidebar:
         if st.button("▶️ Start Scanner", use_container_width=True):
             st.session_state.scanner_running = True
             threading.Thread(target=scanner_loop, daemon=True).start()
-            st.success("✅ Scanner running!")
+            st.rerun()
     else:
         st.success("🟢 Promoter Scanner is ON")
         if st.button("⏹️ Stop Scanner", use_container_width=True):
             st.session_state.scanner_running = False
-            st.warning("Scanner stopped")
-
+            st.rerun()
     st.divider()
 
     st.subheader("👀 Watchlist")
