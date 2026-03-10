@@ -12,8 +12,8 @@ load_dotenv()
 
 # ── CLIENTS ─────────────────────────────────────────────────
 groq_client = Groq(api_key=os.getenv("GROQ_API_KEY"))
-TELEGRAM_TOKEN = os.getenv("TELEGRAM_TOKEN", "8662890629:AAF871qkxJGq9772GI8nUbRkUPcIwN_ugjk")
-TELEGRAM_CHAT_ID = os.getenv("TELEGRAM_CHAT_ID", "6339816750")
+TELEGRAM_TOKEN = os.getenv("TELEGRAM_TOKEN")
+TELEGRAM_CHAT_ID = os.getenv("TELEGRAM_CHAT_ID")
 
 # ── PERSISTENCE ──────────────────────────────────────────────
 DATA_FILE = "watchlist.json"
@@ -345,12 +345,12 @@ with st.sidebar:
         if st.button("▶️ Start Auto Monitor", use_container_width=True):
             st.session_state.auto_monitor = True
             threading.Thread(target=auto_monitor_loop, daemon=True).start()
-            st.rerun()
+            st.success("✅ Auto monitor ON!")
     else:
         st.success("🟢 Auto monitor is ON")
         if st.button("⏹️ Stop Auto Monitor", use_container_width=True):
             st.session_state.auto_monitor = False
-            st.rerun()
+            st.warning("Stopped")
 
     st.divider()
 
@@ -360,12 +360,12 @@ with st.sidebar:
         if st.button("▶️ Start Scanner", use_container_width=True):
             st.session_state.scanner_running = True
             threading.Thread(target=scanner_loop, daemon=True).start()
-            st.rerun()
+            st.success("✅ Scanner running!")
     else:
         st.success("🟢 Promoter Scanner is ON")
         if st.button("⏹️ Stop Scanner", use_container_width=True):
             st.session_state.scanner_running = False
-            st.rerun()
+            st.warning("Scanner stopped")
 
     st.divider()
 
